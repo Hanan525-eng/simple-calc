@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #075a7a;
+        }
+        .calculatorForm {
+            margin-top: 20px;
+        }
+        input[type="number"] {
+            margin: 5px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        button {
+            margin: 5px;
+            padding: 5px 10px;
+            background-color: #055757;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #075a7a;
+        }
+      
+     
+
+        
+    </style>
+</head>
+<body>
+    <h1>آلة حاسبة بسيطة</h1>
+    <form id="calculatorForm">
+        <input type="number" id="num1" placeholder="الرقم الثاني" >
+        <input type="number" id="num2" placeholder="الرقم الاول" >
+        <div>
+            <button type="button" onclick="calculate('add')">جمع</button>
+            <button type="button" onclick="calculate('subtract')">طرح</button>
+            <button type="button" onclick="calculate('multiply')">ضرب</button>
+            <button type="button" onclick="calculate('divide')">قسمة</button>
+        </div>
+    </form>
+    <div class="result" id="result">
+        
+    </div>
+
+    <script>
+        function calculate(operation) {
+            const num1 = parseFloat(document.getElementById("num1").value);
+            const num2 = parseFloat(document.getElementById("num2").value);
+            let result;
+
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById("result").textContent = "من فضلك، ادخل  الرقم.";
+                return;
+            }
+
+            if (num1 < 0 || num2 < 0) {
+                document.getElementById("result").textContent = "من فضلك، ادخل رقم صحيح.";
+                return;
+            }
+
+            switch (operation) {
+                case 'add':
+                    result = num1 + num2;
+                    break;
+                case 'subtract':
+                    result = num1 - num2;
+                    break;
+                case 'multiply':
+                    result = num1 * num2;
+                    break;
+                case 'divide':
+                    result = num2 !== 0 ? num1 / num2 : "القسمة على صفر غير مسموح بها!";
+                    break;
+            }
+
+            document.getElementById("result").textContent = `النتيجة: ${result}`;
+        }
+    </script>
+</body>
+</html>
